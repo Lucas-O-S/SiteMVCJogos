@@ -1,0 +1,33 @@
+﻿@model List<JogosViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listagem de Jogos</h2>
+
+<table class="table table-responsive">
+    <tr>
+        <th>Ações</th>
+        <th>Id</th>
+        <th>Descrição</th>
+        <th>Valor de Locação</th>
+        <th>Data de Aquicição</th>
+        <th>id de Categoria</th>
+
+    </tr>
+
+    @foreach ( var jogos in Model)
+    {
+        <tr>
+             <th></th>
+             <th>@jogos.id</th>
+             <th>@jogos.descricao</th>
+             <th>@jogos.valorLocacao</th>     
+             <th>@jogos.dataAquicicao</th>
+             <th>@jogos.idCategoria</th>
+
+        </tr>
+   
+
+    }
+</table>
