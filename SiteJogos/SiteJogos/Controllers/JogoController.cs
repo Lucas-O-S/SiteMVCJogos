@@ -12,5 +12,21 @@ namespace SiteJogos.Controllers
             List<JogosViewModel> lista = dao.Listagem();
             return View(lista);
         }
+
+        public IActionResult Create()
+        {
+            JogosViewModel jogos = new JogosViewModel();
+            jogos.dataAquicicao = DateTime.Now;
+            return View("Form",jogos);
+        }
+    
+        public IActionResult Salvar(JogosViewModel jogo)
+        {
+            JogoDAO dao = new JogoDAO();
+            dao.Inserir(jogo);
+            return RedirectToAction("index");
+        }
     }
-}
+
+
+}   

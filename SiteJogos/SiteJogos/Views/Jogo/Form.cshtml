@@ -1,0 +1,35 @@
+﻿@model JogosViewModel
+ 
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastro de Jogo</h2>
+
+<form action="Salvar" method="post">
+	<label for="id" class="control-label">ID</label>
+	<input type="number" name="Id" value = "@Model.id"/>
+	<br />
+
+	<label for="descricao" class="control-label">Descrição</label>
+	<input type="text" name="descricao" value = "@Model.descricao"/>
+	<br />
+
+
+	<label for="valor_locacao" class="control-label">Valor de Locação</label>
+	<input type="text" name="valorLocacao" value = "@Model.valorLocacao"/>
+		<br />
+
+
+	<label for="data_aquisicao" class="control-label">Data de Aquisição</label>
+	<input type="date" name="dataAquicicao" value = "@Model.dataAquicicao.ToString()"/>
+		<br />
+
+
+	<label for="categoriaID" class="control-label">ID de categoria</label>
+	<input type="categoriaID" name="idCategoria" value = "@Model.idCategoria"/>
+	<br />
+
+	<input type="submit"/ value="Salvar dados">
+	<br />
+</form>
