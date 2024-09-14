@@ -6,3 +6,6 @@ Site em modelo MVC usando o Banco de dados jogos
 14.1-) No projeto do cadastro de jogos, faça a opção para cadastrar um novo jogo. 
 
 16.1) Adicione o controle de erros no projeto de jogos. 
+
+18.1) Inclua a opção para alterar um registro no cadastro de jogos.  Tente utilizar uma imagem como link para 
+edição.
