@@ -58,7 +58,7 @@ namespace SiteJogos.DAO
 
         public JogosViewModel Consulta(int id)
         {
-            string sql = "select * from alunos where id = " + id;
+            string sql = "select * from jogos where id = " + id;
             DataTable tabela = HelperDAO.ExecutaSelect(sql,null);
 
             if (tabela.Rows.Count == 0)

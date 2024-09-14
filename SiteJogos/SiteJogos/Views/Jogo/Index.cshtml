@@ -22,7 +22,7 @@
     @foreach ( var jogos in Model)
     {
         <tr>
-             <th></th>
+             <th><a href = "/Jogo/Edit?id=@jogos.id">editar</a></th>
              <th>@jogos.id</th>
              <th>@jogos.descricao</th>
              <th>@jogos.valorLocacao</th>     
