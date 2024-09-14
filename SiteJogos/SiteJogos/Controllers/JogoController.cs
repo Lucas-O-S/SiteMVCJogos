@@ -8,24 +8,52 @@ namespace SiteJogos.Controllers
     {
         public IActionResult Index()
         {
-            JogoDAO dao = new JogoDAO();
-            List<JogosViewModel> lista = dao.Listagem();
-            return View(lista);
-        }
+            try
+            {
+				JogoDAO dao = new JogoDAO();
+				List<JogosViewModel> lista = dao.Listagem();
+				return View(lista);
+			}
+			catch (Exception ex)
+			{
+				return View("Error", new ErrorViewModel(ex.ToString()));
+
+			}
+
+
+		}
 
         public IActionResult Create()
         {
-            JogosViewModel jogos = new JogosViewModel();
-            jogos.dataAquicicao = DateTime.Now;
-            return View("Form",jogos);
-        }
+            try
+            {
+				JogosViewModel jogos = new JogosViewModel();
+				jogos.dataAquicicao = DateTime.Now;
+				return View("Form", jogos);
+			}
+			catch (Exception ex)
+			{
+				return View("Error", new ErrorViewModel(ex.ToString()));
+
+			}
+
+		}
     
         public IActionResult Salvar(JogosViewModel jogo)
         {
-            JogoDAO dao = new JogoDAO();
-            dao.Inserir(jogo);
-            return RedirectToAction("index");
-        }
+            try
+            {
+				JogoDAO dao = new JogoDAO();
+				dao.Inserir(jogo);
+				return RedirectToAction("index");
+			}
+            catch(Exception ex)
+            {
+				return View("Error", new ErrorViewModel(ex.ToString()));
+
+			}
+
+		}
     }
 
 
