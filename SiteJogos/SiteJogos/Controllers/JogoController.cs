@@ -29,6 +29,10 @@ namespace SiteJogos.Controllers
             {
 				JogosViewModel jogos = new JogosViewModel();
 				jogos.dataAquicicao = DateTime.Now;
+
+				JogoDAO dao = new JogoDAO();
+				jogos.id = dao.ProximoID();
+
 				return View("Form", jogos);
 			}
 			catch (Exception ex)
@@ -80,6 +84,18 @@ namespace SiteJogos.Controllers
 			{
 				return View("Error", new ErrorViewModel(ex.ToString()));
 			}
+		}
+
+		public IActionResult Delete(int id) {
+			try{
+				JogoDAO dao = new JogoDAO();
+				dao.Excluir(id);
+				return RedirectToAction("Index");
+			}
+			catch (Exception ex) { 
+				return View("Error", new ErrorViewModel(ex.ToString()));
+			}
+		
 		}
     }
 

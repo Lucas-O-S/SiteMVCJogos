@@ -77,6 +77,13 @@ namespace SiteJogos.DAO
                 lista.Add(MontarJogo(dr));
             return lista; 
         }
+
+        public int ProximoID()
+        {
+            string sql = "select isnull(max(id) +1,1) as 'Maior' from jogos";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            return Convert.ToInt32(tabela.Rows[0]["Maior"]);
+        }
         
 
 

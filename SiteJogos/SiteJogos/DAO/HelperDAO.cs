@@ -13,10 +13,9 @@ namespace SiteJogos.DAO
                 using (SqlCommand comando = new SqlCommand(sql, conexao))
                 {
                     if (parametros != null)
-                    {
                         comando.Parameters.AddRange(parametros);
-                        comando.ExecuteNonQuery();
-                    }
+                    comando.ExecuteNonQuery();
+                    
                     conexao.Close();
                 }
             }
