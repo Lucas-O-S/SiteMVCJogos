@@ -12,3 +12,4 @@ edição.
 
 20.1) Inclua a opção para excluir um registro no projeto de jogos. Faça também a sugestão de próximo código. 
 
+22.1) Faça o controle de desabilitar o campo Id durante a edição no projeto de jogos.  
