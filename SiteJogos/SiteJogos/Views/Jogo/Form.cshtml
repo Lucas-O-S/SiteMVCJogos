@@ -1,5 +1,5 @@
 ﻿@model JogosViewModel
- 
+
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,8 +7,20 @@
 <h2>Cadastro de Jogo</h2>
 
 <form action="Salvar" method="post">
+	<input type="hidden" name = "operacao" value ="@ViewBag.operacao" />
+
+
 	<label for="id" class="control-label">ID</label>
-	<input type="number" name="Id" value = "@Model.id" Disabled/>
+	@if (ViewBag.operacao == "I")
+	{
+		<input type="number" name="Id" value = "@Model.id"/>
+
+	}
+	else
+	{
+		<input type="number" name="Id" value = "@Model.id" readonly/>
+
+	}
 	<br />
 
 	<label for="descricao" class="control-label">Descrição</label>

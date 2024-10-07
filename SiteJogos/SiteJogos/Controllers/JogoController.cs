@@ -27,7 +27,9 @@ namespace SiteJogos.Controllers
         {
             try
             {
-				JogosViewModel jogos = new JogosViewModel();
+                ViewBag.operacao = "I";
+
+                JogosViewModel jogos = new JogosViewModel();
 				jogos.dataAquicicao = DateTime.Now;
 
 				JogoDAO dao = new JogoDAO();
@@ -43,12 +45,12 @@ namespace SiteJogos.Controllers
 
 		}
     
-        public IActionResult Salvar(JogosViewModel jogo)
+        public IActionResult Salvar(JogosViewModel jogo,string operacao)
         {
             try
             {
 				JogoDAO dao = new JogoDAO();
-				if (dao.Consulta(jogo.id) == null)
+				if (operacao == "I")
 				{
 					dao.Inserir(jogo);
 				}
@@ -71,6 +73,8 @@ namespace SiteJogos.Controllers
 		{
 			try
 			{
+				ViewBag.operacao = "A";
+
 				JogoDAO dao = new JogoDAO();
 				JogosViewModel jogo = dao.Consulta(id);
 				if (jogo == null)
@@ -97,6 +101,7 @@ namespace SiteJogos.Controllers
 			}
 		
 		}
+
     }
 
 

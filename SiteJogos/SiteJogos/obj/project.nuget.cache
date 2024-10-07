@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5gT12dStQIC5XvM4eivJacgYrfw8wNJ7Z5vU0zOXo1eoEQtKz578OM1dm1kWsAOiXCAur9KKxdGrdRvp16c+Pw==",
+  "dgSpecHash": "4DFZmEVO37NxoR85xuKjwg4WhNN5ICusNrNBf7iFy4Dc8WxmnxhwvfvzFkla8t/zY13Jd6mAzNjFbKYM11eDDg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucas\\source\\repos\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj",
+  "projectFilePath": "C:\\Users\\lucas\\repo\\.git\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucas\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\lucas\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

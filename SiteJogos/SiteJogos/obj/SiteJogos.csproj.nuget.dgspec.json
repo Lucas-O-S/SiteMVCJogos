@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lucas\\source\\repos\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj": {}
+    "C:\\Users\\lucas\\repo\\.git\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lucas\\source\\repos\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj": {
+    "C:\\Users\\lucas\\repo\\.git\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lucas\\source\\repos\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj",
+        "projectUniqueName": "C:\\Users\\lucas\\repo\\.git\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj",
         "projectName": "SiteJogos",
-        "projectPath": "C:\\Users\\lucas\\source\\repos\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj",
+        "projectPath": "C:\\Users\\lucas\\repo\\.git\\SiteMVCJogos\\SiteJogos\\SiteJogos\\SiteJogos.csproj",
         "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lucas\\source\\repos\\SiteMVCJogos\\SiteJogos\\SiteJogos\\obj\\",
+        "outputPath": "C:\\Users\\lucas\\repo\\.git\\SiteMVCJogos\\SiteJogos\\SiteJogos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
