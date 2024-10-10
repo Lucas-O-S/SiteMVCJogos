@@ -21,27 +21,46 @@
 		<input type="number" name="Id" value = "@Model.id" readonly/>
 
 	}
+	<span asp-validation-for="id" class="text-danger"></span>
 	<br />
 
 	<label for="descricao" class="control-label">Descrição</label>
 	<input type="text" name="descricao" value = "@Model.descricao"/>
+		<span asp-validation-for="descricao" class="text-danger"></span>
+
 	<br />
 
 
-	<label for="valor_locacao" class="control-label">Valor de Locação</label>
+	<label for="valorLocacao" class="control-label">Valor de Locação</label>
 	<input type="text" name="valorLocacao" value = "@Model.valorLocacao"/>
+		<span asp-validation-for="valorLocacao" class="text-danger"></span>
+
+	<br />
+
+
+	<label for="dataAquicicao" class="control-label">Data de Aquisição</label>
+	@if(ViewBag.operacao == "A")
+	{
+		<input type="date" name="dataAquicicao" value = "@Model.dataAquicicao.ToString("yyyy-MM-dd")"/>
+
+	}
+	else
+	{
+		<input type="date" name="dataAquicicao" value = "@DateTime.Now.ToString("yyyy-MM-dd")"/>
+
+	}
+	<span asp-validation-for="dataAquicicao" class="text-danger"></span>
+
 		<br />
 
 
-	<label for="data_aquisicao" class="control-label">Data de Aquisição</label>
-	<input type="date" name="dataAquicicao" value = "@Model.dataAquicicao.ToString()"/>
-		<br />
+	<label for="idCategoria" class="control-label">ID de categoria</label>
+	<input type="idCategoria" name="idCategoria" value = "@Model.idCategoria"/>
+	<span asp-validation-for="idCategoria" class="text-danger"></span>
 
-
-	<label for="categoriaID" class="control-label">ID de categoria</label>
-	<input type="categoriaID" name="idCategoria" value = "@Model.idCategoria"/>
 	<br />
 
 	<input type="submit"/ value="Salvar dados">
+
 	<br />
 </form>

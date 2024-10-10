@@ -49,16 +49,29 @@ namespace SiteJogos.Controllers
         {
             try
             {
-				JogoDAO dao = new JogoDAO();
-				if (operacao == "I")
+				ValidarDados(jogo,operacao);
+				if (ModelState.IsValid == false)
 				{
-					dao.Inserir(jogo);
+					ViewBag.operacao = operacao;
+					return View("form",jogo);
+
+
 				}
 				else
-					dao.Alterar(jogo);
-				
-				return RedirectToAction("index");
-				
+				{
+					JogoDAO dao = new JogoDAO();
+					if (operacao == "I")
+					{
+						dao.Inserir(jogo);
+					}
+					else
+						dao.Alterar(jogo);
+					return RedirectToAction("index");
+
+				}
+
+
+
 
 			}
             catch(Exception ex)
@@ -100,6 +113,46 @@ namespace SiteJogos.Controllers
 				return View("Error", new ErrorViewModel(ex.ToString()));
 			}
 		
+		}
+
+		private void ValidarDados(JogosViewModel jogo, string operacao)
+		{
+			ModelState.Clear();
+			JogoDAO dao = new JogoDAO();
+			if (operacao == "I" && dao.Consulta(jogo.id) != null)
+			{
+				ModelState.AddModelError("Id","Codigo já em uso");
+			}
+			if (operacao == "A" && dao.Consulta(jogo.id) == null)
+			{
+				ModelState.AddModelError("Id", "Codigo não existe");
+			}
+			if (jogo.id <= 0)
+			{
+				ModelState.AddModelError("Id", "Codigo deve ser maior que 0");
+			}
+			if (jogo.valorLocacao <= 0 || jogo.valorLocacao ==null )
+			{
+				ModelState.AddModelError("valorLocacao", "valor invalido");
+
+			}
+			if (String.IsNullOrEmpty(jogo.descricao))
+			{
+				ModelState.AddModelError("descricao", "Descrição está vazia");
+
+			}
+
+			if (jogo.idCategoria <= 0 || jogo.idCategoria == null )
+			{
+				ModelState.AddModelError("idCategoria", "valor invalido");
+
+			}
+			if (jogo.dataAquicicao > DateTime.UtcNow)
+			{
+				ModelState.AddModelError("dataAquicicao", "Valor invalido");
+
+			}
+
 		}
 
     }
