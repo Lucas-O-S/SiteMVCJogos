@@ -15,3 +15,7 @@ edição.
 22.1) Faça o controle de desabilitar o campo Id durante a edição no projeto de jogos.
 
 24.1-) Faça as validações no cadastro de jogos. Todos os campos são obrigatórios. 
+
+26.1) Faça ajustes na última versão do cadastro de jogos para que a classe DAO realize todos os acessos ao 
+banco de dados através de Stored procedures. Adicione também a opção de listar as categorias através de 
+uma  caixa combo.
