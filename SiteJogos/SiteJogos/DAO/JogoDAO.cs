@@ -34,32 +34,27 @@ namespace SiteJogos.DAO
 
         public void Inserir(JogosViewModel jogo)
         {
-            string sql = "insert into jogos(id, descricao, valor_locacao, data_aquisicao, categoriaID) " +
-                 "values (@id, @descricao, @valor_locacao, @data_aquisicao ,@categoriaID)";
-            HelperDAO.ExecutarSQL(sql,CriarParametros(jogo));
+
+            HelperDAO.ExecutarSQL("spIncluiJogo",CriarParametros(jogo));
 
         }
 
         public void Excluir(int id)
         {
-            string sql = "delete jogos where id = " + id;
-            HelperDAO.ExecutarSQL(sql,null);
+            HelperDAO.ExecutaProc("spExcluiJogo", null);
 
         }
 
         public void Alterar(JogosViewModel jogo)
         {
-            string sql = "update jogos set descricao=@descricao," +
-            "valor_locacao=@valor_locacao, data_aquisicao=@data_aquisicao," +
-            "categoriaID=@categoriaID where id = @id";
 
-            HelperDAO.ExecutarSQL(sql,CriarParametros(jogo));
+
+            HelperDAO.ExecutaProc("spAlteraJogo",CriarParametros(jogo));
         }
 
         public JogosViewModel Consulta(int id)
         {
-            string sql = "select * from jogos where id = " + id;
-            DataTable tabela = HelperDAO.ExecutaSelect(sql,null);
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaJogo",null);
 
             if (tabela.Rows.Count == 0)
                 return null;
@@ -71,8 +66,7 @@ namespace SiteJogos.DAO
         public List<JogosViewModel> Listagem()
         {
             List<JogosViewModel> lista = new List<JogosViewModel>();
-            string sql = "select * from Jogos order by descricao";
-            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemJogo", null);
             foreach (DataRow dr in tabela.Rows)
                 lista.Add(MontarJogo(dr));
             return lista; 
@@ -80,8 +74,7 @@ namespace SiteJogos.DAO
 
         public int ProximoID()
         {
-            string sql = "select isnull(max(id) +1,1) as 'Maior' from jogos";
-            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            DataTable tabela = HelperDAO.ExecutaSelect("spProximoId", null);
             return Convert.ToInt32(tabela.Rows[0]["Maior"]);
         }
         
