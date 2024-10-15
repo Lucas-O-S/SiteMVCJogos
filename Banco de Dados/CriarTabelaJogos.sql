@@ -33,6 +33,55 @@ go
 
 --SPs
 
+-----------------------------------------------
+--Sp Genericas
+
+create or alter procedure spDelete(
+	@id int,
+	@tabela varchar(max)
+)
+as
+begin
+	declare @sql varchar(max)
+	set @sql = 'delete * from ' + @tabela + ' where id = ' + @id
+	exec(@sql)
+end
+go
+
+create or alter procedure spConsulta(
+	@id int,
+	@tabela varchar(max)
+)
+as
+begin
+	declare @sql varchar(max)
+	set @sql = 'select * from ' + @tabela + ' where id = ' + @id
+	exec(@sql)
+end
+go
+
+create or alter procedure spLista(
+	@tabela varchar(max)
+)
+as
+begin
+	declare @sql varchar(max)
+	set @sql = 'select * from ' + @tabela
+	exec(@sql)
+end
+go
+
+create or alter procedure spProximoId(
+	@tabela varchar(max)
+)
+as
+begin
+	exec('select isnull(max(id)+1,1) as MAIOR from ' + @tabela) 
+end
+go
+
+
+-------------------------------------------------
 create or alter procedure spIncluiJogo(
 	@id int,
 	@descricao varchar(50),
@@ -64,48 +113,10 @@ end
 go
 
 
-create or alter procedure spExcluiJogo(
-	@id int
-)
-as
-begin
-	delete jogos where id = @id
-end
-go
-
-
-create or alter procedure spConsultaJogo(
-	@id int
-)
-as
-begin
-	select * from jogos where id = @id
-end
-go
 
 
 
-create or alter procedure spListaJogo
-as
-begin
-	select * from jogos 
-end
-go
 
+-----------------------------------------------------
+----SPs categoria
 
-create or alter procedure spProximoId(
-	@tabela varchar(max)
-)
-as
-begin
-	exec('select isnull(max(id)+1,1) as MAIOR from ' + @tabela) 
-end
-go
-
-create or alter procedure spListaCidade
-as
-begin
-	select * from categorias
-end
-
-go
