@@ -35,13 +35,17 @@ namespace SiteJogos.DAO
         public void Inserir(JogosViewModel jogo)
         {
 
-            HelperDAO.ExecutarSQL("spIncluiJogo",CriarParametros(jogo));
+            HelperDAO.ExecutaProc("spIncluiJogo",CriarParametros(jogo));
 
         }
 
         public void Excluir(int id)
         {
-            HelperDAO.ExecutaProc("spExcluiJogo", null);
+            var p = new SqlParameter[]
+            {
+                    new SqlParameter("id", id)
+            };
+            HelperDAO.ExecutaProc("spExcluiJogo", p);
 
         }
 
@@ -54,7 +58,11 @@ namespace SiteJogos.DAO
 
         public JogosViewModel Consulta(int id)
         {
-            DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaJogo",null);
+            var p = new SqlParameter[]
+             {
+                new SqlParameter("id", id)
+             };
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaJogo",p);
 
             if (tabela.Rows.Count == 0)
                 return null;
@@ -66,7 +74,7 @@ namespace SiteJogos.DAO
         public List<JogosViewModel> Listagem()
         {
             List<JogosViewModel> lista = new List<JogosViewModel>();
-            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemJogo", null);
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListaJogo", null);
             foreach (DataRow dr in tabela.Rows)
                 lista.Add(MontarJogo(dr));
             return lista; 
@@ -74,7 +82,11 @@ namespace SiteJogos.DAO
 
         public int ProximoID()
         {
-            DataTable tabela = HelperDAO.ExecutaSelect("spProximoId", null);
+            var p = new SqlParameter[]
+             {
+                new SqlParameter("tabela", "jogos")
+            };
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spProximoId", p);
             return Convert.ToInt32(tabela.Rows[0]["Maior"]);
         }
         

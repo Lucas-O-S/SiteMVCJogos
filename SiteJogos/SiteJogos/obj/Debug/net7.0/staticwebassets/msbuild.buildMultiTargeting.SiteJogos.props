@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SiteJogos.props" />
+</Project>
