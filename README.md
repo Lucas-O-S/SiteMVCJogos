@@ -19,3 +19,5 @@ edição.
 26.1) Faça ajustes na última versão do cadastro de jogos para que a classe DAO realize todos os acessos ao 
 banco de dados através de Stored procedures. Adicione também a opção de listar as categorias através de 
 uma  caixa combo.
+
+27.1) Aplique estes padrões ao cadastro de jogos.
