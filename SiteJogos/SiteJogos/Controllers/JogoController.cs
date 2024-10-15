@@ -35,6 +35,10 @@ namespace SiteJogos.Controllers
 				JogoDAO dao = new JogoDAO();
 				jogos.id = dao.ProximoID();
 
+				CategoriaDAO catDAO = new CategoriaDAO();
+				ViewBag.categorias = catDAO.Listagem();
+
+
 				return View("Form", jogos);
 			}
 			catch (Exception ex)
@@ -53,6 +57,10 @@ namespace SiteJogos.Controllers
 				if (ModelState.IsValid == false)
 				{
 					ViewBag.operacao = operacao;
+
+					CategoriaDAO catDAO = new CategoriaDAO();
+					ViewBag.categorias = catDAO.Listagem();
+
 					return View("form",jogo);
 
 
@@ -88,7 +96,10 @@ namespace SiteJogos.Controllers
 			{
 				ViewBag.operacao = "A";
 
-				JogoDAO dao = new JogoDAO();
+                CategoriaDAO catDAO = new CategoriaDAO();
+                ViewBag.categorias = catDAO.Listagem();
+
+                JogoDAO dao = new JogoDAO();
 				JogosViewModel jogo = dao.Consulta(id);
 				if (jogo == null)
 				{

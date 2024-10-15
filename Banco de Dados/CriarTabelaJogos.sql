@@ -101,3 +101,11 @@ begin
 	exec('select isnull(max(id)+1,1) as MAIOR from ' + @tabela) 
 end
 go
+
+create or alter procedure spListaCidade
+as
+begin
+	select * from categorias
+end
+
+go

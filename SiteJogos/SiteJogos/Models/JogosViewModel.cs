@@ -7,5 +7,7 @@
         public decimal valorLocacao { get; set; }
         public DateTime dataAquicicao { get; set; }
         public int idCategoria { get; set; }
+
+        public string nomeCategoria { get; set; }
     }
 }

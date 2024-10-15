@@ -29,9 +29,14 @@ namespace SiteJogos.DAO
 
             jogo.idCategoria = Convert.ToInt32(registro["categoriaID"]);
 
+            CategoriaDAO dao = new CategoriaDAO();
+            CategoriaViewModel categoria = dao.Consulta(jogo.idCategoria);
+            jogo.nomeCategoria = categoria.nome;
+
             return jogo;
         }
 
+      
         public void Inserir(JogosViewModel jogo)
         {
 
@@ -89,7 +94,8 @@ namespace SiteJogos.DAO
             DataTable tabela = HelperDAO.ExecutaProcSelect("spProximoId", p);
             return Convert.ToInt32(tabela.Rows[0]["Maior"]);
         }
-        
+
+       
 
 
     }
