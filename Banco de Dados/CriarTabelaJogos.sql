@@ -43,7 +43,7 @@ create or alter procedure spDelete(
 as
 begin
 	declare @sql varchar(max)
-	set @sql = 'delete * from ' + @tabela + ' where id = ' + @id
+	set @sql = 'delete from ' + @tabela + ' where id = ' +  cast( @id as varchar(max))
 	exec(@sql)
 end
 go
@@ -55,7 +55,7 @@ create or alter procedure spConsulta(
 as
 begin
 	declare @sql varchar(max)
-	set @sql = 'select * from ' + @tabela + ' where id = ' + @id
+	set @sql = 'select * from ' + @tabela + ' where id = ' + cast( @id as varchar(max))
 	exec(@sql)
 end
 go
@@ -82,7 +82,7 @@ go
 
 
 -------------------------------------------------
-create or alter procedure spIncluiJogo(
+create or alter procedure spIncluiJogos(
 	@id int,
 	@descricao varchar(50),
 	@valor_locacao decimal(18,2),
@@ -98,7 +98,7 @@ end
 go
 
 
-create or alter procedure spAlteraJogo(
+create or alter procedure spAlteraJogos(
 	@id int,
 	@descricao varchar(50),
 	@valor_locacao decimal(18,2),
