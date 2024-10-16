@@ -4,36 +4,24 @@ using SiteJogos.Models;
 
 namespace SiteJogos.Controllers
 {
-    public class JogoController : Controller
+    public class JogoController : PadraoController<JogosViewModel>
     {
-        public IActionResult Index()
-        {
-            try
-            {
-				JogoDAO dao = new JogoDAO();
-				List<JogosViewModel> lista = dao.Listagem();
-				return View(lista);
-			}
-			catch (Exception ex)
-			{
-				return View("Error", new ErrorViewModel(ex.ToString()));
-
-			}
-
-
+		public JogoController() {
+			dao = new JogoDAO();
+			GeraProximoId = true;
 		}
 
-        public IActionResult Create()
+        public override IActionResult Create()
         {
             try
             {
-                ViewBag.operacao = "I";
 
-                JogosViewModel jogos = new JogosViewModel();
+				ViewBag.operacao = "I";
+
+				JogosViewModel jogos = new JogosViewModel();
 				jogos.dataAquicicao = DateTime.Now;
 
-				JogoDAO dao = new JogoDAO();
-				jogos.id = dao.ProximoID();
+				PreencherDadosView("I", jogos);
 
 				CategoriaDAO catDAO = new CategoriaDAO();
 				ViewBag.categorias = catDAO.Listagem();
@@ -49,11 +37,12 @@ namespace SiteJogos.Controllers
 
 		}
     
-        public IActionResult Salvar(JogosViewModel jogo,string operacao)
+        public override IActionResult Salvar(JogosViewModel jogo,string operacao)
         {
             try
             {
-				ValidarDados(jogo,operacao);
+
+				ValidarDados(jogo, operacao);
 				if (ModelState.IsValid == false)
 				{
 					ViewBag.operacao = operacao;
@@ -61,7 +50,7 @@ namespace SiteJogos.Controllers
 					CategoriaDAO catDAO = new CategoriaDAO();
 					ViewBag.categorias = catDAO.Listagem();
 
-					return View("form",jogo);
+					return View("form", jogo);
 
 
 				}
@@ -70,10 +59,10 @@ namespace SiteJogos.Controllers
 					JogoDAO dao = new JogoDAO();
 					if (operacao == "I")
 					{
-						dao.Inserir(jogo);
+						dao.Insert(jogo);
 					}
 					else
-						dao.Alterar(jogo);
+						dao.Update(jogo);
 					return RedirectToAction("index");
 
 				}
@@ -81,8 +70,10 @@ namespace SiteJogos.Controllers
 
 
 
+
+
 			}
-            catch(Exception ex)
+			catch (Exception ex)
             {
 				return View("Error", new ErrorViewModel(ex.ToString()));
 
@@ -90,23 +81,23 @@ namespace SiteJogos.Controllers
 
 		}
 
-		public IActionResult Edit(int id)
+		public override IActionResult Edit(int id)
 		{
 			try
 			{
 				ViewBag.operacao = "A";
 
-                CategoriaDAO catDAO = new CategoriaDAO();
-                ViewBag.categorias = catDAO.Listagem();
+				CategoriaDAO catDAO = new CategoriaDAO();
+				ViewBag.categorias = catDAO.Listagem();
 
-                JogoDAO dao = new JogoDAO();
+				JogoDAO dao = new JogoDAO();
 				JogosViewModel jogo = dao.Consulta(id);
 				if (jogo == null)
 				{
 					return RedirectToAction("Index");
 				}
 				else
-					return View("Form",jogo);
+					return View("Form", jogo);
 			}
 			catch (Exception ex)
 			{
@@ -114,34 +105,13 @@ namespace SiteJogos.Controllers
 			}
 		}
 
-		public IActionResult Delete(int id) {
-			try{
-				JogoDAO dao = new JogoDAO();
-				dao.Excluir(id);
-				return RedirectToAction("Index");
-			}
-			catch (Exception ex) { 
-				return View("Error", new ErrorViewModel(ex.ToString()));
-			}
-		
-		}
+
 
 		private void ValidarDados(JogosViewModel jogo, string operacao)
 		{
-			ModelState.Clear();
-			JogoDAO dao = new JogoDAO();
-			if (operacao == "I" && dao.Consulta(jogo.id) != null)
-			{
-				ModelState.AddModelError("Id","Codigo já em uso");
-			}
-			if (operacao == "A" && dao.Consulta(jogo.id) == null)
-			{
-				ModelState.AddModelError("Id", "Codigo não existe");
-			}
-			if (jogo.id <= 0)
-			{
-				ModelState.AddModelError("Id", "Codigo deve ser maior que 0");
-			}
+
+			base.ValidaDados(jogo, operacao);
+			
 			if (jogo.valorLocacao <= 0 || jogo.valorLocacao ==null )
 			{
 				ModelState.AddModelError("valorLocacao", "valor invalido");

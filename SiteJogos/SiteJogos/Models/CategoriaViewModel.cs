@@ -1,8 +1,7 @@
 ﻿namespace SiteJogos.Models
 {
-    public class CategoriaViewModel
+    public class CategoriaViewModel : PadraoViewModel
     {
-        public int id { get; set; }
         public string nome { get; set; }
     }
 }

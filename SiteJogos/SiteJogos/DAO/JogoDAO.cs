@@ -4,9 +4,13 @@ using System.Data.SqlClient;
 
 namespace SiteJogos.DAO
 {
-    public class JogoDAO
+    public class JogoDAO : PadraoDAO<JogosViewModel>
     {
-        private SqlParameter[] CriarParametros(JogosViewModel jogo)
+        protected override void SetTabela()
+        {
+            tabela = "jogos";
+        }
+        protected override SqlParameter[] CriarParametros(JogosViewModel jogo)
         {
             SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("id", jogo.id);
@@ -17,7 +21,7 @@ namespace SiteJogos.DAO
             return parametros;
         }
 
-        private JogosViewModel MontarJogo(DataRow registro)
+        protected override JogosViewModel MontarModel(DataRow registro)
         {
             JogosViewModel jogo = new JogosViewModel();
 
@@ -35,68 +39,6 @@ namespace SiteJogos.DAO
 
             return jogo;
         }
-
-      
-        public void Inserir(JogosViewModel jogo)
-        {
-
-            HelperDAO.ExecutaProc("spIncluiJogo",CriarParametros(jogo));
-
-        }
-
-        public void Excluir(int id)
-        {
-            var p = new SqlParameter[]
-            {
-                    new SqlParameter("id", id)
-            };
-            HelperDAO.ExecutaProc("spExcluiJogo", p);
-
-        }
-
-        public void Alterar(JogosViewModel jogo)
-        {
-
-
-            HelperDAO.ExecutaProc("spAlteraJogo",CriarParametros(jogo));
-        }
-
-        public JogosViewModel Consulta(int id)
-        {
-            var p = new SqlParameter[]
-             {
-                new SqlParameter("id", id)
-             };
-            DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaJogo",p);
-
-            if (tabela.Rows.Count == 0)
-                return null;
-
-            else
-                return MontarJogo(tabela.Rows[0]);
-        }
-
-        public List<JogosViewModel> Listagem()
-        {
-            List<JogosViewModel> lista = new List<JogosViewModel>();
-            DataTable tabela = HelperDAO.ExecutaProcSelect("spListaJogo", null);
-            foreach (DataRow dr in tabela.Rows)
-                lista.Add(MontarJogo(dr));
-            return lista; 
-        }
-
-        public int ProximoID()
-        {
-            var p = new SqlParameter[]
-             {
-                new SqlParameter("tabela", "jogos")
-            };
-            DataTable tabela = HelperDAO.ExecutaProcSelect("spProximoId", p);
-            return Convert.ToInt32(tabela.Rows[0]["Maior"]);
-        }
-
-       
-
 
     }
 }
