@@ -21,3 +21,6 @@ banco de dados através de Stored procedures. Adicione também a opção de list
 uma  caixa combo.
 
 27.1) Aplique estes padrões ao cadastro de jogos.
+
+28.1 – Aplique os conceitos de herança no cadastro de Jogos. 
+
